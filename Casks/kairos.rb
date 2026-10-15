@@ -12,8 +12,8 @@ cask "kairos" do
   app "Kairos.app"
 
   # Kairos is ad-hoc signed and not notarized, so clear the download quarantine.
-  postflight do
-    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{appdir}/Kairos.app"]
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/Kairos.app"]
   end
 
   uninstall quit: "com.muneerraza.kairos"
